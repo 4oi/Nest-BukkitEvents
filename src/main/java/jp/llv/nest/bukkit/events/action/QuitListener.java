@@ -39,12 +39,10 @@ public class QuitListener implements Listener {
     
     @EventHandler(ignoreCancelled = true)
     public void on(PlayerQuitEvent event) {
-        if (api.getEventManager().fire(new BukkitJoinEvent(event)));
+        api.getEventManager().fire(new BukkitJoinEvent(event));
     }
     
-    public static class BukkitJoinEvent extends NestValueAdapter<PlayerQuitEvent> implements QuitEvent<BukkitPlayer, PlayerQuitEvent>, Cancelable<PlayerQuitEvent> {
-
-        private boolean canceled = false;
+    public static class BukkitJoinEvent extends NestValueAdapter<PlayerQuitEvent> implements QuitEvent<BukkitPlayer, PlayerQuitEvent> {
         
         public BukkitJoinEvent(PlayerQuitEvent value) {
             super(value);
@@ -53,21 +51,6 @@ public class QuitListener implements Listener {
         @Override
         public BukkitPlayer getSender() {
             return new BukkitPlayer(super.value.getPlayer());
-        }
-
-        @Override
-        public void cancel() {
-            this.canceled = true;
-        }
-
-        @Override
-        public void proceed() {
-            this.canceled = false;
-        }
-
-        @Override
-        public boolean isCanceled() {
-            return this.canceled;
         }
         
     }

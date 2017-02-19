@@ -39,12 +39,10 @@ public class JoinListener implements Listener {
     
     @EventHandler(ignoreCancelled = true)
     public void on(PlayerJoinEvent event) {
-        if (api.getEventManager().fire(new BukkitJoinEvent(event)));
+        api.getEventManager().fire(new BukkitJoinEvent(event));
     }
     
-    public static class BukkitJoinEvent extends NestValueAdapter<PlayerJoinEvent> implements JoinEvent<BukkitPlayer, PlayerJoinEvent>, Cancelable<PlayerJoinEvent> {
-
-        private boolean canceled = false;
+    public static class BukkitJoinEvent extends NestValueAdapter<PlayerJoinEvent> implements JoinEvent<BukkitPlayer, PlayerJoinEvent> {
         
         public BukkitJoinEvent(PlayerJoinEvent value) {
             super(value);
@@ -53,21 +51,6 @@ public class JoinListener implements Listener {
         @Override
         public BukkitPlayer getSender() {
             return new BukkitPlayer(super.value.getPlayer());
-        }
-
-        @Override
-        public void cancel() {
-            this.canceled = true;
-        }
-
-        @Override
-        public void proceed() {
-            this.canceled = false;
-        }
-
-        @Override
-        public boolean isCanceled() {
-            return this.canceled;
         }
         
     }
