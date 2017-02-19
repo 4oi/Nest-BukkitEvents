@@ -26,10 +26,10 @@ package jp.llv.nest.bukkit.events.action;
 import jp.llv.nest.NestAPI;
 import jp.llv.nest.command.obj.NestValueAdapter;
 import jp.llv.nest.command.obj.bukkit.BukkitPlayer;
-import jp.llv.nest.event.action.SwapItemEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import jp.llv.nest.event.action.ItemSwapEvent;
 
 /**
  *
@@ -50,7 +50,7 @@ public class ItemSwapListener implements Listener {
         }
     }
     
-    public static class BukkitItemSwapEvent extends NestValueAdapter<PlayerSwapHandItemsEvent> implements SwapItemEvent<BukkitPlayer, PlayerSwapHandItemsEvent> {
+    public static class BukkitItemSwapEvent extends NestValueAdapter<PlayerSwapHandItemsEvent> implements ItemSwapEvent<BukkitPlayer, PlayerSwapHandItemsEvent> {
         
         private boolean cancel = false;
 
