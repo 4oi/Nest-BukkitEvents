@@ -30,7 +30,7 @@ import org.bukkit.Server;
  *
  * @author toyblocks
  */
-@Module(name = "bukkit-events", author = "toyblocks", version = 1)
+@Module(name = "bukkit-events", author = "toyblocks", version = 2)
 public class BukkitEventsModule {
     
     @Inject
